@@ -31,9 +31,9 @@ Target: **<50 µA average system sleep current.**
  
 **LDO instead of a buck-boost regulator.** An LDO offers a simpler design and lower quiescent current, at the cost of reduced usable battery voltage as the LiPo approaches the regulator’s dropout region. The RT9080-33GJ5 was selected for its approximately 2 µA quiescent current and 600 mA output rating. The MCP1700 was rejected because its 250 mA rating provided insufficient margin for ESP32 Wi-Fi current transients.
  
-**No onboard current-sense IC.** . The system must measure microamp-level sleep current as well as much larger Wi-Fi current transients. Test points are therefore placed across a removable 0 Ω jumper. During characterization, the jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value shunt for active-current measurements. The two operating states will be measured separately and combined using the measured duty cycle. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 added excessive quiescent current for this application.
+**No onboard current-sense IC.** The system must measure microamp-level sleep current as well as much larger Wi-Fi current transients. Test points are therefore placed across a removable 0 Ω jumper. During characterization, the jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value shunt for active-current measurements. The two operating states will be measured separately and combined using the measured duty cycle. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 added excessive quiescent current for this application.
  
-**Adaptive sampling instead of a fixed interval.** The planned firmware will maintain a rolling window of pressure measurements, estimate the rate of change, and adjust the next sampling interval. Faster changes, such as an approaching front, will means more frequent sampling; stable conditions means longer sleep intervals.
+**Adaptive sampling instead of a fixed interval.** The planned firmware will maintain a rolling window of pressure measurements, estimate the rate of change, and adjust the next sampling interval. Faster changes, such as an approaching front, will mean more frequent sampling; stable conditions means longer sleep intervals.
  
  
 **Fully static FreeRTOS allocation.** Every task and queue is created statically to keep predictable memory usage.
@@ -42,8 +42,8 @@ Target: **<50 µA average system sleep current.**
 ## Repo structure
  
 ```
-├── firmware/       # ESP-IDF project (FreeRTOS tasks, drivers, adaptive sampling)
-├── hardware/       # KiCad schematic + PCB layout, BOM
+├── firmware/       # ESP-IDF project
+├── hardware/       # KiCad schematic + PCB layout
 └── README.md
 ```
 
