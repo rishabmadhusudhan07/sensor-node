@@ -30,7 +30,7 @@ Target: **<50 µA average system sleep current.**
  
 **LDO instead of a buck-boost regulator.** An LDO offers a simpler design and lower quiescent current, though reduced usable battery voltage as the LiPo approaches the regulator’s dropout region. The RT9080-33GJ5 was selected for its approximately 2 µA quiescent current and 600 mA output rating. Did not use MCP1700 because of its 250 mA rating, insufficient margin for high current draw during WiFi transmission..
  
-**No onboard current-sense IC.** The system must measure sleep current in the microamps as well as much larger Wi-Fi transmission currents. Instead, test points are placed across a removable jumper. The jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value one for active-current measurements. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 drew too much current.
+**No onboard current-sense IC.** The system must measure sleep current in the microamps as well as much larger Wi-Fi transmission currents. Instead of a dedicated IC, test points are placed across a removable jumper. The jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value one for active-current measurements. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 drew too much current.
  
 **Adaptive sampling instead of a fixed interval.** The planned firmware will have  a rolling window of pressure measurements, estimate the rate of change, and adjust the next sampling interval. Faster changes, such as a cold front or wind shift, will mean more frequent sampling; stable conditions mean longer sleep intervals.
  
