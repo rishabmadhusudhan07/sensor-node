@@ -3,7 +3,7 @@ A custom ESP32-based weather sensor node targeting six months of battery life an
 
 Planned firmware will use ESP-IDF and statically allocated FreeRTOS tasks for sensor sampling, local logging, wireless transmission, and deep-sleep control. Later revisions may add transmission integrity checks and adaptive sampling based on changing weather conditions.
 
-Status: In development. The Rev A schematic and PCB layout are complete but have not yet been fabricated or electrically validated. BME280 breadboard testing is in progress. [Project Status](#project-status).
+Status: In development. The Rev A schematic and PCB layout are complete but have not yet been fabricated or electrically validated. BME280 I2C communication is being tested. Chip ID was verified. Compensated temperature/pressure/humidity values are in progress. Currently being tested on a XIAO ESP32-S3. [Project Status](#project-status).
 
 ---
  
