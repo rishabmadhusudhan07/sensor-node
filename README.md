@@ -53,7 +53,7 @@ Target: **<50 µA average system sleep current.**
 | Rev A schematic and PCB layout          | Complete    |
 | BME280 breadboard bring-up              | In progress |
 | PCB fabrication and bring-up            | Not started |
-| FreeRTOS task implementation            | Not started |
+| FreeRTOS task implementation            | In Progress |
 | Data integrity and Wi-Fi retry pipeline | Not started |
 | Power characterization                  | Not started |
 | Field testing                           | Not started |
