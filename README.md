@@ -12,7 +12,7 @@ Status: In development. The initial schematic and PCB layout are complete but no
 A low-cost, low-power sensor node could make denser local observations more practical. This project explores the engineering requirements for that type of device.
 
 ## Hardware
-The following values are estimates based on component datasheets and have not yet been verified on assembled hardware.
+The following values are estimates based on component datasheets and haven't been verified on assembled hardware.
 
 | Component | Role | Sleep current |
 |---|---|---|
@@ -28,7 +28,7 @@ Target: **<50 µA average system sleep current.**
  
 **ESP-IDF over Arduino.** ESP-IDF was selected to provide direct control over FreeRTOS task creation, static memory allocation, peripheral configuration, and ESP32 sleep/wake behavior.
  
-**LDO instead of a buck-boost regulator.** An LDO offers a simpler design and lower quiescent current, though reduced usable battery voltage as the LiPo approaches the regulator’s dropout region. The RT9080-33GJ5 was selected for its approximately 2 µA quiescent current and 600 mA output rating. Did not use MCP1700 because of its 250 mA rating, insufficient margin for high current draw during WiFi transmission..
+**LDO instead of a buck-boost regulator.** An LDO offers a simpler design and lower quiescent current, though reduced usable battery voltage as the LiPo approaches the regulator’s dropout region. The RT9080-33GJ5 was selected for its approximately 2 µA quiescent current and 600 mA output rating. Did not use MCP1700 because of its 250 mA rating, insufficient margin for high current draw during WiFi transmission.
  
 **No onboard current-sense IC.** The system must measure sleep current in the microamps as well as much larger Wi-Fi transmission currents. Instead of a dedicated IC, test points are placed across a removable jumper. The jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value one for active-current measurements. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 drew too much current.
  
