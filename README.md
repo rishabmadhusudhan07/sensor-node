@@ -16,15 +16,15 @@ The following values are estimates based on component datasheets and haven't bee
 
 | Component | Role | Sleep current |
 |---|---|---|
-| ESP32-WROOM-32E-N4 | MCU + WiFi | ~10 µA (RTC timer + memory retention) |
-| BME280 (through-hole breakout, soldered on) | Temp / humidity / pressure, forced mode | ≥0.1 µA sensor only; breakout overhead TBD |
-| BH1750FVI-TR (bare IC, reflowed) | Ambient light / solar-charge proxy | 1 µA |
+| ESP32-WROOM-32E-N4 | MCU + WiFi | ~10 µA |
+| BME280 (through-hole breakout, soldered on) | Temp / humidity / pressure, forced mode | ≥0.1 µA sensor only |
+| BH1750FVI-TR (bare IC, reflowed) | Ambient light | 1 µA |
 | TPB4056A20-DFGR | LiPo charge management | <2 µA |
 | RT9080-33GJ5 | 3.3V LDO regulator, 600 mA max | ~2 µA |
  
-Target: **<50 µA average system sleep current.**
+Target: <50 µA average system sleep current.
 
-## Key design decisions
+## Design decisions
  
 **ESP-IDF over Arduino.** ESP-IDF was selected to provide direct control over FreeRTOS task creation, static memory allocation, peripheral configuration, and ESP32 sleep/wake behavior.
  
@@ -32,7 +32,7 @@ Target: **<50 µA average system sleep current.**
  
 **No onboard current-sense IC.** The system must measure sleep current in the microamps as well as much larger Wi-Fi transmission currents. Instead of a dedicated IC, test points are placed across a removable jumper. The jumper can be replaced by a larger resistor for controlled sleep-current measurements or a low-value one for active-current measurements. An INA219 did not provide sufficient dynamic range for both measurements with a single shunt, while the INA228 drew too much current.
  
-**Adaptive sampling instead of a fixed interval.** The planned firmware will have  a rolling window of pressure measurements, estimate the rate of change, and adjust the next sampling interval. Faster changes, such as a cold front or wind shift, will mean more frequent sampling; stable conditions mean longer sleep intervals.
+**Adaptive sampling instead of a fixed interval.** The planned firmware will have a rolling window of pressure measurements, estimate the rate of change, and adjust the next sampling interval. Faster changes, such as a cold front or wind shift, will mean more frequent sampling; stable conditions mean longer sleep intervals.
  
  
 **Fully static FreeRTOS allocation.** Every task and queue will be created statically to keep predictable memory usage.
